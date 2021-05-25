@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">OnePieceList</string>
+    <string name="detail_movie">Detail Movie</string>
+    <string name="button_save">Button Save</string>
+    <string name="score">Score</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="status">Status</string>
+    <string name="favorite_item_not_found">Favorite Item Not Found</string>
+</resources>
