@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.idm.onepiecelist.core.data.source.Resource
 import com.idm.onepiecelist.core.ui.ListItemAdapter
 import com.idm.onepiecelist.core.vo.Status
 import com.idm.onepiecelist.databinding.FragmentHomeBinding
@@ -38,12 +39,12 @@ class HomeFragment : Fragment() {
 
 
         activity.apply {
-            viewModel.getList().observe(viewLifecycleOwner,{
-                when (it.status) {
-                    Status.LOADING -> {
+            viewModel.getList().observe(viewLifecycleOwner) {
+                when (it) {
+                 is Resource.Loading -> {
                         binding.progressBar.isVisible = true
                     }
-                    Status.SUCCESS -> {
+                    is Resource.Success -> {
                         binding.progressBar.isVisible = false
                         it.data?.let { item ->
                             adapter = ListItemAdapter(item)
@@ -51,12 +52,16 @@ class HomeFragment : Fragment() {
                             binding.rvItems.adapter = adapter
                         }
                     }
-                    Status.ERROR -> {
+                    is Resource.Error -> {
                         binding.progressBar.isVisible = false
-                        Toast.makeText(requireContext(),"Error when Load a Data", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Error when Load a Data",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
-            })
+            }
             binding.rvItems.layoutManager = LinearLayoutManager(activity,
                 LinearLayoutManager.VERTICAL,false)
         }

@@ -1,26 +1,30 @@
 package com.idm.onepiecelist.core.data.source.remote
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.idm.onepiecelist.core.data.source.remote.response.OnePieceResponse
-import kotlinx.coroutines.CoroutineScope
+import android.util.Log
+import com.idm.onepiecelist.core.data.source.remote.response.OnePieceResultResponse
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import java.lang.Exception
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val apiService: ApiService){
 
-    fun getList(): LiveData<ApiResponse<OnePieceResponse>> {
-        val listItem = MutableLiveData<ApiResponse<OnePieceResponse>>()
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = apiService.getList()
-            if (response.isSuccessful) {
-                listItem.postValue(response.body()?.let { ApiResponse.Success(it) })
-            } else {
-                listItem.postValue(
-                    response.body()?.let { ApiResponse.Error(response.code().toString()) })
+    fun getList(): Flow<ApiResponse<List<OnePieceResultResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getList()
+                val dataList = response.results
+                if (dataList.isNotEmpty()){
+                    emit(ApiResponse.Success(dataList))
+                }else{
+                    emit(ApiResponse.Empty)
+                }
+            }catch (e :Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("Error Exception",e.toString())
             }
-        }
-        return listItem
+        } .flowOn(Dispatchers.IO)
     }
 }

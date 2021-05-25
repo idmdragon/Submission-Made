@@ -3,13 +3,14 @@ package com.idm.onepiecelist.core.utils
 import androidx.room.PrimaryKey
 import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
 import com.idm.onepiecelist.core.data.source.remote.response.OnePieceResponse
+import com.idm.onepiecelist.core.data.source.remote.response.OnePieceResultResponse
 import com.idm.onepiecelist.core.domain.model.OnePiece
 
 
 object DataMapper {
-    fun mapResponsesToEntities(input: OnePieceResponse): List<OnePieceEntity> {
+    fun mapResponsesToEntities(input: List<OnePieceResultResponse>): List<OnePieceEntity> {
         val itemList = ArrayList<OnePieceEntity>()
-        input.results.map {
+        input.map {
           val item =   OnePieceEntity(
                 airing = it.airing,
                 episodes = it.episodes,
