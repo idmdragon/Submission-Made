@@ -14,6 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.google.android.material.snackbar.Snackbar
 import com.idm.onepiecelist.R
 import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
+import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intentItem = intent.getParcelableExtra<OnePieceEntity>(ID)
+        val intentItem = intent.getParcelableExtra<OnePiece>(ID)
 
         binding.btnBack.setOnClickListener {
             finish()
@@ -41,7 +42,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun bindView(intentItem: OnePieceEntity?) {
+    private fun bindView(intentItem: OnePiece?) {
         with(binding) {
             intentItem.let {
                 if (it != null) {

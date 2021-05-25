@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
+import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.databinding.ItemListBinding
 
-class ListItemAdapter(private val listItem: List<OnePieceEntity>) :
+class ListItemAdapter(private val listItem: List<OnePiece>) :
     RecyclerView.Adapter<ListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val itemBinding =

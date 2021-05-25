@@ -1,6 +1,10 @@
 package com.idm.onepiecelist.core.domain.model
 
-data class OnePiece (
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class OnePiece(
     val airing: Boolean,
     val episodes: Int,
     val image_url: String,
@@ -12,5 +16,5 @@ data class OnePiece (
     val synopsis: String,
     val title: String,
     val type: String,
-        ){
-}
+    val isFavorite: Boolean
+) : Parcelable

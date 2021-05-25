@@ -4,9 +4,15 @@ import android.content.Context
 import androidx.room.Room
 import androidx.viewbinding.BuildConfig
 import com.idm.onepiecelist.core.BaseApplication
+import com.idm.onepiecelist.core.data.source.OnePieceRepository
+import com.idm.onepiecelist.core.data.source.local.LocalDataSource
 import com.idm.onepiecelist.core.data.source.local.OnePieceDatabase
 import com.idm.onepiecelist.core.data.source.local.dao.OnePieceDao
 import com.idm.onepiecelist.core.data.source.remote.ApiService
+import com.idm.onepiecelist.core.data.source.remote.RemoteDataSource
+import com.idm.onepiecelist.core.domain.repository.IOnePieceRepository
+import com.idm.onepiecelist.core.domain.usecase.OnePieceInteractor
+import com.idm.onepiecelist.core.domain.usecase.OnePieceUseCase
 import com.idm.onepiecelist.core.utils.Constant
 import com.idm.onepiecelist.core.utils.Constant.DATABASE_NAME
 import dagger.Module
@@ -49,6 +55,7 @@ object AppModule {
             .build()
     }
 
+
     @Singleton
     @Provides
     fun provideApiService(okHttpClient: OkHttpClient): ApiService {
@@ -72,5 +79,23 @@ object AppModule {
         database: OnePieceDatabase
     ) : OnePieceDao {
         return database.onePieceDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepository(
+        onePieceDao: OnePieceDao,
+        apiService: ApiService
+    ): IOnePieceRepository {
+
+        val localDataSource = LocalDataSource(onePieceDao)
+        val remoteDataSource = RemoteDataSource(apiService)
+        return OnePieceRepository(remoteDataSource,localDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOnePieceUseCase(repository: IOnePieceRepository): OnePieceUseCase {
+        return OnePieceInteractor(repository)
     }
 }

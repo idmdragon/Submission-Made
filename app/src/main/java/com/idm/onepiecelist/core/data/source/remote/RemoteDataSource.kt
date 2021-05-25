@@ -15,7 +15,6 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService){
         CoroutineScope(Dispatchers.IO).launch {
             val response = apiService.getList()
             if (response.isSuccessful) {
-
                 listItem.postValue(response.body()?.let { ApiResponse.Success(it) })
             } else {
                 listItem.postValue(

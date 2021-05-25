@@ -9,13 +9,14 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
+import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.databinding.ItemListBinding
 import com.idm.onepiecelist.detail.DetailActivity
 
 
 class ListViewHolder(private val binding: ItemListBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: OnePieceEntity) {
+    fun bind(item: OnePiece) {
         with(binding) {
             tvTittle.text = item.title
 
