@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/favoriteMenu"
-        android:name="com.idm.onepiecelist.favorite.FavoriteFragment"
+        android:name="com.idm.onepiecelist.favorite.favorite.ui.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
 </navigation>

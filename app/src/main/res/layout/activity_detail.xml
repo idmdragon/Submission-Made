@@ -53,7 +53,7 @@
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-           />
+            android:contentDescription="@string/back_button" />
 
         <TextView
             android:id="@+id/textView"
@@ -81,6 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="@string/button_save" />
         <ImageView
+
             android:id="@+id/iv_poster"
             android:layout_width="match_parent"
             android:layout_height="370dp"
@@ -91,7 +92,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:background="@color/blue"
-              />
+            android:contentDescription="@string/image_poster" />
 
         <TextView
             android:id="@+id/tv_tittle"

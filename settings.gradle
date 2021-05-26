@@ -1,2 +1,4 @@
 rootProject.name = "OnePieceList"
 include ':app'
+include ':core'
+include ':favorite'
