@@ -6,17 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.core.ui.ListItemAdapter
 import com.idm.onepiecelist.databinding.FragmentFavoriteBinding
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
-    private val viewModel: FavoriteViewModel by activityViewModels()
+    private val viewModel: FavoriteViewModel by viewModel()
     private lateinit var adapter: ListItemAdapter
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!

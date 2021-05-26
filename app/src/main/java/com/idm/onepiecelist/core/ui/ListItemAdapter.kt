@@ -3,7 +3,6 @@ package com.idm.onepiecelist.core.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
 import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.databinding.ItemListBinding
 

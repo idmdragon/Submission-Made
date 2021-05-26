@@ -4,8 +4,6 @@ import com.idm.onepiecelist.core.data.source.remote.ApiResponse
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.*
 
-
-
 abstract class NetworkBoundResource <ResultType, RequestType>{
 
     private var result: Flow<Resource<ResultType>> = flow {

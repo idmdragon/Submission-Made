@@ -1,6 +1,5 @@
 package com.idm.onepiecelist.core.data.source.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.Dao
 import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity

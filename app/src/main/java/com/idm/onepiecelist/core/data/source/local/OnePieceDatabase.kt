@@ -9,7 +9,8 @@ import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
 @Database(
     entities = [
     OnePieceEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class OnePieceDatabase : RoomDatabase() {
     abstract fun onePieceDao(): OnePieceDao

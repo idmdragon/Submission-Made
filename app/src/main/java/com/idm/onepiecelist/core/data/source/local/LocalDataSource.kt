@@ -3,9 +3,9 @@ package com.idm.onepiecelist.core.data.source.local
 import com.idm.onepiecelist.core.data.source.local.dao.OnePieceDao
 import com.idm.onepiecelist.core.data.source.local.entity.OnePieceEntity
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(
+
+class LocalDataSource(
     private val onePieceDao: OnePieceDao
 ){
 

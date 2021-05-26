@@ -1,26 +1,25 @@
 package com.idm.onepiecelist.core.data.source
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
+
 import com.idm.onepiecelist.core.data.source.local.LocalDataSource
 import com.idm.onepiecelist.core.data.source.remote.ApiResponse
 import com.idm.onepiecelist.core.data.source.remote.RemoteDataSource
-import com.idm.onepiecelist.core.data.source.remote.response.OnePieceResponse
 import com.idm.onepiecelist.core.data.source.remote.response.OnePieceResultResponse
 import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.core.domain.repository.IOnePieceRepository
+import com.idm.onepiecelist.core.utils.AppExecutors
 import com.idm.onepiecelist.core.utils.DataMapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-import kotlinx.coroutines.flow.*
 
-class OnePieceRepository @Inject constructor(
+
+class OnePieceRepository (
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
 ) : IOnePieceRepository{
     override fun getAllItems(): Flow<Resource<List<OnePiece>>> =
         object : NetworkBoundResource<List<OnePiece>, List<OnePieceResultResponse>>() {

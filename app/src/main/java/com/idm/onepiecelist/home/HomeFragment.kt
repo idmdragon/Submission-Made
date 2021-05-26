@@ -1,27 +1,21 @@
 package com.idm.onepiecelist.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.idm.onepiecelist.core.data.source.Resource
 import com.idm.onepiecelist.core.ui.ListItemAdapter
-import com.idm.onepiecelist.core.vo.Status
 import com.idm.onepiecelist.databinding.FragmentHomeBinding
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var adapter: ListItemAdapter
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +33,7 @@ class HomeFragment : Fragment() {
 
 
         activity.apply {
-            viewModel.getList().observe(viewLifecycleOwner) {
+            viewModel.items.observe(viewLifecycleOwner) {
                 when (it) {
                  is Resource.Loading -> {
                         binding.progressBar.isVisible = true
