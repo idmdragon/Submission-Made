@@ -9,7 +9,11 @@
         android:id="@+id/homeMenu"
         android:name="com.idm.onepiecelist.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeMenu_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingMenu"
         android:name="com.idm.onepiecelist.setting.SettingFragment"
@@ -19,5 +23,19 @@
         android:id="@+id/favoriteMenu"
         android:name="com.idm.onepiecelist.favorite.favorite.ui.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteMenu_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.idm.onepiecelist.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="onePiece"
+            app:argType="com.idm.onepiecelist.core.domain.model.OnePiece"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

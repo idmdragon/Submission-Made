@@ -1,10 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+android:layout_marginTop="16dp"
+    android:orientation="vertical"
     tools:context=".setting.SettingFragment">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkgray"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/Heading1"
+                android:text="@string/change_language"
+                />
+
+            <ImageButton
+                android:id="@+id/btn_change_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:contentDescription="@string/next" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/darkgray"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/Heading1"
+                android:text="@string/daily_alarm"
+                android:textSize="16sp" />
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_alarm"
+                android:layout_gravity="end|center_vertical"
+                android:layout_weight="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
 
 
-</FrameLayout>
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>
