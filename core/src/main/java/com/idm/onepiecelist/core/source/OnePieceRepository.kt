@@ -30,7 +30,6 @@ class OnePieceRepository (
             override suspend fun createCall(): Flow<ApiResponse<List<OnePieceResultResponse>>> =
                 remoteDataSource.getList()
 
-
             override suspend fun saveCallResult(data: List<OnePieceResultResponse>) {
                 val itemList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertTourism(itemList)

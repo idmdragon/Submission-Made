@@ -1,7 +1,6 @@
 ##---------------Begin: proguard configuration for SQLCipher  ----------
--keep,includedescriptorclasses class net.sqlcipher.** { *; }
--keep,includedescriptorclasses interface net.sqlcipher.** { *; }
-
+-keep,includedescriptorclasses class net.sqlcipher** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher** { *; }
 
 ##---------------Begin: proguard configuration for Gson ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
@@ -13,10 +12,6 @@
 
 # Gson specific classes
 -dontwarn sun.misc.**
-#-keep class com.google.gson.stream.** { *; }
-
-# Application classes that will be serialized/deserialized over Gson
--keep class com.google.gson.examples.android.model.** { <fields>; }
 
 # Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
 # JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
@@ -25,7 +20,6 @@
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
 
--keepnames class androidx.navigation.fragment.NavHostFragment
 # Prevent R8 from leaving Data object members always null
 -keepclassmembers,allowobfuscation class * {
 @com.google.gson.annotations.SerializedName <fields>;
@@ -41,10 +35,43 @@
 -keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
 
 # Retain service method parameters when optimizing.
+# Retrofit
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
 @retrofit2.http.* <methods>;
 }
+-dontwarn retrofit.**
+-keep class retrofit.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+-dontwarn java.lang.invoke.*
+-keep class com.idm.onepiecelist.core.source.remote.response.** { *; }
+-dontwarn retrofit.appengine.UrlFetchClient
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-keepclassmembernames interface * {
+    @retrofit.http.* <methods>;
+}
+-dontwarn retrofit2.Platform$Java8
 
+-dontwarn retrofit2.**
+-dontwarn org.codehaus.mojo.**
+-keep class retrofit2.** { *; }
+
+-keepattributes RuntimeVisibleAnnotations
+-keepattributes RuntimeInvisibleAnnotations
+-keepattributes RuntimeVisibleParameterAnnotations
+-keepattributes RuntimeInvisibleParameterAnnotations
+
+-keepattributes EnclosingMethod
+
+-keepclasseswithmembers class * {
+    @retrofit2.* <methods>;
+}
+
+-keepclasseswithmembers interface * {
+    @retrofit2.* <methods>;
+}
 # Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
@@ -78,3 +105,5 @@ public *;
 -keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
 *** rewind();
 }
+
+-keepnames class com.idm.onepiecelist.core.domain.model.OnePiece

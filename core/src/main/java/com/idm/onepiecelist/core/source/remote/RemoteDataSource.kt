@@ -15,7 +15,9 @@ class RemoteDataSource(private val apiService: ApiService){
         return flow {
             try {
                 val response = apiService.getList()
+                Log.d("RemoteDataSource","Isi dataList ${response.results}")
                 val dataList = response.results
+
                 if (dataList.isNotEmpty()){
                     emit(ApiResponse.Success(dataList))
                 }else{
