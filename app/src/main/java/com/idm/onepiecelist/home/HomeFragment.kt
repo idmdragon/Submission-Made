@@ -18,14 +18,13 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var adapter: ListItemAdapter
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -69,9 +68,6 @@ class HomeFragment : Fragment() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
 
 }

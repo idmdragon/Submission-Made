@@ -17,19 +17,18 @@ import com.google.android.material.snackbar.Snackbar
 import com.idm.onepiecelist.R
 import com.idm.onepiecelist.core.domain.model.OnePiece
 import com.idm.onepiecelist.databinding.FragmentDetailBinding
+import com.idm.onepiecelist.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment() {
 
     private val viewModel: DetailViewModel by viewModel()
-    private var _binding: FragmentDetailBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding: FragmentDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
+        binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -103,4 +102,5 @@ class DetailFragment : Fragment() {
         }
 
     }
+
 }

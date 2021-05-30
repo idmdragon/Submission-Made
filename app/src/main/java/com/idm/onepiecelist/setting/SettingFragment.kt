@@ -14,15 +14,14 @@ import com.idm.onepiecelist.utils.alarm.AlarmReceiver
 
 class SettingFragment : Fragment() {
 
-    private var _binding: FragmentSettingBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentSettingBinding
     private val switchPreference = "switch preference"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingBinding.inflate(layoutInflater, container, false)
+        binding = FragmentSettingBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -32,29 +31,32 @@ class SettingFragment : Fragment() {
         val time = "09:00"
         val message = "Open your App Today"
         val preferences =
-            this.getActivity()?.getSharedPreferences(switchPreference, AppCompatActivity.MODE_PRIVATE)
+            this.getActivity()
+                ?.getSharedPreferences(switchPreference, AppCompatActivity.MODE_PRIVATE)
         val editPref = preferences?.edit()
         if (preferences != null) {
             binding.switchAlarm.setChecked(preferences.getBoolean("isChecked", false))
         }
-        with(binding){
+        with(binding) {
 
 
             btnChangeLanguage.setOnClickListener {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
 
-            switchAlarm.setOnCheckedChangeListener (CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked){
-                    editPref?.putBoolean("isChecked",true)
-                    alarmReceiver.setRepeatingAlarm(requireActivity(),time,message)
-                }else{
-                    editPref?.putBoolean("isChecked",false)
+            switchAlarm.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    editPref?.putBoolean("isChecked", true)
+                    alarmReceiver.setRepeatingAlarm(requireActivity(), time, message)
+                } else {
+                    editPref?.putBoolean("isChecked", false)
                     alarmReceiver.cancelAlarm(requireActivity())
                 }
                 editPref?.apply()
             }
-            )}
+            )
+        }
     }
+
 
 }
